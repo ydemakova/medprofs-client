@@ -1,24 +1,41 @@
 import axios from 'axios'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { API_URL } from '../../config'
 
 export default function ArticleForm() {
 	const navigate = useNavigate()
+	const { id } = useParams()
+	const isNew = !id
+	const [article, setArticle] = useState({})
+	const [sphere, setSphere] = useState('')
+
+	useEffect(() => {
+		if (isNew) return
+		;(async () => {
+			const res = await axios.get(`${API_URL}/articles/${id}`)
+			setArticle(res.data)
+			setSphere(res.data.sphere)
+		})()
+	}, [id, isNew])
 
 	async function handleSubmit(event) {
 		event.preventDefault()
 
-		const article = {
+		const articleNext = {
 			title: event.target.title.value,
-			sphere: event.target.sphere.value,
 			text: event.target.text.value,
 			location: event.target.location.value,
 			link: event.target.link.value,
+			sphere,
 		}
 
 		let err
-		await axios.post(`${API_URL}/articles`, article, { withCredentials: true }).catch((e) => (err = e))
+		if (isNew) {
+			await axios.post(`${API_URL}/articles`, articleNext, { withCredentials: true }).catch((e) => (err = e))
+		} else {
+			await axios.put(`${API_URL}/articles/${id}`, articleNext, { withCredentials: true }).catch((e) => (err = e))
+		}
 
 		if (err) {
 			console.error(err)
@@ -38,7 +55,13 @@ export default function ArticleForm() {
 						Title:
 					</label>
 					<div className="col-5">
-						<input type="text" className="form-control" id="title" name="title" />
+						<input
+							type="text"
+							className="form-control"
+							id="title"
+							name="title"
+							defaultValue={article.title}
+						/>
 						<div className="form-text">The title of the article</div>
 					</div>
 				</div>
@@ -47,7 +70,13 @@ export default function ArticleForm() {
 						Sphere:
 					</label>
 					<div className="col-5">
-						<select className="form-control" id="sphere" name="sphere">
+						<select
+							className="form-control"
+							name="sphere"
+							id="sphere"
+							value={sphere}
+							onChange={(e) => setSphere(e.target.value)}
+						>
 							<option value="Allergy and immunology">Allergy and immunology</option>
 							<option value="Cardiology">Cardiology</option>
 							<option value="Clinical neurophysiology">Clinical neurophysiology</option>
@@ -61,7 +90,7 @@ export default function ArticleForm() {
 							<option value="Pediatrics">Pediatrics</option>
 							<option value="Surgery">Surgery</option>
 							<option value="Trichology">Trichology</option>
-							<option value="Another">Another...</option>
+							<option value="Another">Another</option>
 						</select>
 						<div className="form-text">The field of expertise of the article</div>
 					</div>
@@ -71,7 +100,13 @@ export default function ArticleForm() {
 						Text:
 					</label>
 					<div className="col-5">
-						<textarea type="text" className="form-control" id="text" name="text"></textarea>
+						<textarea
+							type="text"
+							className="form-control"
+							id="text"
+							name="text"
+							defaultValue={article.text}
+						></textarea>
 						<div className="form-text">Article contents</div>
 					</div>
 				</div>
@@ -80,7 +115,13 @@ export default function ArticleForm() {
 						Location:
 					</label>
 					<div className="col-5">
-						<input type="location" className="form-control" name="location" id="location" />
+						<input
+							type="location"
+							className="form-control"
+							name="location"
+							id="location"
+							defaultValue={article.location}
+						/>
 						<div className="form-text">Where it is spread / which regions it applies to</div>
 					</div>
 				</div>
@@ -89,7 +130,7 @@ export default function ArticleForm() {
 						Link:
 					</label>
 					<div className="col-5">
-						<input type="link" className="form-control" name="link" id="link" />
+						<input type="link" className="form-control" name="link" id="link" defaultValue={article.link} />
 						<div className="form-text">An additional link to the topic</div>
 					</div>
 				</div>

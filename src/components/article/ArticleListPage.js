@@ -34,11 +34,9 @@ export default function ArticleListPage() {
 					<tr>
 						<th>#</th>
 						<th>Title</th>
-						<th>Tags</th>
-						<th>Locations</th>
+						<th>Link</th>
+						<th>Location</th>
 						<th>Text</th>
-						<th>Author</th>
-						<th>Type</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -47,13 +45,11 @@ export default function ArticleListPage() {
 						<tr key={article._id} className="align-middle">
 							<td>{index + 1}.</td>
 							<td>{article.title}</td>
-							<td>{article.tags}</td>
-							<td>{article.locations}</td>
+							<td>{article.link}</td>
+							<td>{article.location}</td>
 							<td>{article.text}</td>
-							<td>{article.author}</td>
-							<td>{article.type}</td>
 							<td>
-								<Link className="btn btn-primary" to="/articles/:id">
+								<Link className="btn btn-primary" to={`/articles/${article._id}`}>
 									edit
 								</Link>
 								&nbsp;
