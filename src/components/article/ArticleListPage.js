@@ -1,12 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+// import { API_URL } from '../../'
 
 export default function ArticleListPage() {
 	const [articles, setArticles] = useState([])
 
 	useEffect(() => {
 		;(async () => {
-			let res = await axios.get(`/api/articles`)
+			let res = await axios.get(`http://localhost:5005/api/articles`)
 			setArticles(res.data)
 		})()
 	}, [])
