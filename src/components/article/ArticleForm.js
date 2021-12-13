@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { API_URL } from '../../config'
 
-export default function AddEditArticle() {
+export default function ArticleForm() {
 	const navigate = useNavigate()
 
 	async function handleSubmit(event) {
@@ -14,12 +14,11 @@ export default function AddEditArticle() {
 			sphere: event.target.sphere.value,
 			text: event.target.text.value,
 			location: event.target.location.value,
-			photo: event.target.photo.value,
-			links: event.target.links.value,
+			link: event.target.link.value,
 		}
 
 		let err
-		await axios.post(`${API_URL}/api/articles`, article, { withCredentials: true }).catch((e) => (err = e))
+		await axios.post(`${API_URL}/articles`, article, { withCredentials: true }).catch((e) => (err = e))
 
 		if (err) {
 			console.error(err)
@@ -39,7 +38,8 @@ export default function AddEditArticle() {
 						Title:
 					</label>
 					<div className="col-5">
-						<input type="text" className="form-control" id="title" name="title" placeholder="Title" />
+						<input type="text" className="form-control" id="title" name="title" />
+						<div className="form-text">The title of the article</div>
 					</div>
 				</div>
 				<div className="form-group row mb-3">
@@ -48,7 +48,6 @@ export default function AddEditArticle() {
 					</label>
 					<div className="col-5">
 						<select className="form-control" id="sphere" name="sphere">
-							<option selected>Choose...</option>
 							<option value="Allergy and immunology">Allergy and immunology</option>
 							<option value="Cardiology">Cardiology</option>
 							<option value="Clinical neurophysiology">Clinical neurophysiology</option>
@@ -64,6 +63,7 @@ export default function AddEditArticle() {
 							<option value="Trichology">Trichology</option>
 							<option value="Another">Another...</option>
 						</select>
+						<div className="form-text">The field of expertise of the article</div>
 					</div>
 				</div>
 				<div className="form-group row mb-3">
@@ -71,13 +71,8 @@ export default function AddEditArticle() {
 						Text:
 					</label>
 					<div className="col-5">
-						<textarea
-							type="text"
-							className="form-control"
-							id="text"
-							name="text"
-							placeholder="Article contents"
-						></textarea>
+						<textarea type="text" className="form-control" id="text" name="text"></textarea>
+						<div className="form-text">Article contents</div>
 					</div>
 				</div>
 				<div className="form-group row mb-3">
@@ -85,13 +80,17 @@ export default function AddEditArticle() {
 						Location:
 					</label>
 					<div className="col-5">
-						<input
-							type="location"
-							className="form-control"
-							name="location"
-							id="location"
-							placeholder="Where it is spread / which regions it applies to"
-						/>
+						<input type="location" className="form-control" name="location" id="location" />
+						<div className="form-text">Where it is spread / which regions it applies to</div>
+					</div>
+				</div>
+				<div className="form-group row mb-3">
+					<label htmlFor="link" className="col-3 offset-2 col-form-label">
+						Link:
+					</label>
+					<div className="col-5">
+						<input type="link" className="form-control" name="link" id="link" />
+						<div className="form-text">An additional link to the topic</div>
 					</div>
 				</div>
 				<div className="row">

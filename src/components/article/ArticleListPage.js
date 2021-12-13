@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 // import { API_URL } from '../../'
 
 export default function ArticleListPage() {
@@ -14,7 +15,12 @@ export default function ArticleListPage() {
 
 	return (
 		<div className="articles">
-			<h1>Article list page</h1>
+			<div className="display-flex">
+				<h1>Article list page</h1>
+				<Link to="/articles/new" className="btn btn-primary">
+					New Article
+				</Link>
+			</div>
 			<table className="table">
 				<thead>
 					<tr>
