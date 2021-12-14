@@ -47,7 +47,7 @@ export default function SignInPage() {
 						name="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
-						class="form-control"
+						className="form-control"
 						id="password"
 						placeholder="Password"
 					/>

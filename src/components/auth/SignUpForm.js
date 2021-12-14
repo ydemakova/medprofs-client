@@ -1,28 +1,25 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { API_URL } from '../../config'
 
 export default function SignUpForm() {
 	const navigate = useNavigate()
 	const [type, setType] = useState('visitor')
-	const { id } = useParams()
-	const isNew = !id
 
 	async function createUser(event) {
 		event.preventDefault()
-		if (isNew) {
-			const userNew = {
-				username: event.target.username.value,
-				firstName: event.target.firstName.value,
-				lastName: event.target.lastName.value,
-				email: event.target.email.value,
-				password: event.target.password.value,
-			}
-			console.log(userNew)
-			await axios.get('${API_URL}/auth')
-			await axios.post(`${API_URL}/users`, userNew, { withCredentials: true })
+		console.log(event.target)
+
+		const userNew = {
+			username: event.target.username.value,
+			firstName: event.target.firstName.value,
+			lastName: event.target.lastName.value,
+			email: event.target.email.value,
+			password: event.target.password.value,
 		}
+		console.log(userNew)
+		await axios.post(`${API_URL}/auth/sign-up`, userNew, { withCredentials: true })
 
 		let err
 		if (err) {
@@ -30,7 +27,7 @@ export default function SignUpForm() {
 			// handle error
 			return
 		}
-		navigate('/articles', { replace: true })
+		navigate('/profile', { replace: true })
 	}
 
 	function selectType(event) {
@@ -42,9 +39,6 @@ export default function SignUpForm() {
 	return (
 		<div className="user-form">
 			<h2>Sign up</h2>
-			<Link to="/sign-in" className="col-2 col-form-label offset-2">
-				Already a user? Sign in instead
-			</Link>
 			<form className="form" onSubmit={createUser}>
 				<div className="form-group row mb-3">
 					<label htmlFor="username" className="col-2 col-form-label offset-2">
@@ -124,7 +118,6 @@ export default function SignUpForm() {
 						</div>
 					</div>
 				</div>
-				{type === 'visitor' && <button className="btn btn-primary offset-7">Submit</button>}
 
 				{type === 'specialist' && (
 					<div className="form-group row mb-3">
@@ -177,10 +170,19 @@ export default function SignUpForm() {
 								<div className="form-text">Your professional background (work places)</div>
 							</div>
 						</div>
-						<button className="btn btn-primary col-1 offset-7 mb-5">Submit</button>
 					</div>
 				)}
+
+				<button className="btn btn-primary offset-4">Submit</button>
 			</form>
+
+			<div className="row">
+				<div className="offset-4 my-3">
+					<Link to="/sign-in" className="col-form-label">
+						Already a user? Sign in instead
+					</Link>
+				</div>
+			</div>
 		</div>
 	)
 }
