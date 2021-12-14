@@ -8,8 +8,15 @@ export default function ProfilePage() {
 
 	useEffect(() => {
 		;(async () => {
-			const res = await axios.get(`${API_URL}/auth/current-user`, { withCredentials: true })
-			setUser(res.data)
+			let err
+			const res = await axios
+				.get(`${API_URL}/auth/current-user`, { withCredentials: true })
+				.catch((e) => (err = e))
+			if (err) {
+				console.log('err: ', err)
+				return
+			}
+			setUser(res?.data)
 		})()
 	})
 
