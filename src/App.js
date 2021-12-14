@@ -14,13 +14,10 @@ import ProfilePage from './components/user/ProfilePage'
 export default function App() {
 	return (
 		<div className="App">
-			<Header>
-				<Routes>
-					<Route path="/signin" element={<SignInPage />} />
-					<Route path="/signup" element={<SignUpPage />} />
-				</Routes>
-			</Header>
+			<Header />
 			<Routes>
+				<Route path="/sign-in" element={<SignInPage />} />
+				<Route path="/sign-up" element={<SignUpPage />} />
 				<Route path="/articles" element={<ArticleListPage />} />
 				<Route path="/articles/new" element={<ArticleDetailPage />} />
 				<Route path="/articles/:id" element={<ArticleDetailPage />} />

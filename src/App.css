@@ -2,4 +2,10 @@
 	display: flex;
 	flex-flow: column;
 	min-height: 100vh;
+	background-image: url('../src/images/bk-medprofs.jpg');
+}
+
+h2 {
+	text-align: center;
+	margin-bottom: 40px;
 }
