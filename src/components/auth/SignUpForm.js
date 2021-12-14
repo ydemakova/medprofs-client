@@ -1,25 +1,36 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { API_URL } from '../../config'
 
 export default function SignUpForm() {
 	const navigate = useNavigate()
 	const [type, setType] = useState('visitor')
+	const { id } = useParams()
+	const isNew = !id
 
 	async function createUser(event) {
 		event.preventDefault()
-
-		const userNew = {
-			username: event.target.username.value,
-			firstName: event.target.firstName.value,
-			llastName: event.target.lastName.value,
-			email: event.target.email.value,
-			password: event.target.password.value,
+		if (isNew) {
+			const userNew = {
+				username: event.target.username.value,
+				firstName: event.target.firstName.value,
+				lastName: event.target.lastName.value,
+				email: event.target.email.value,
+				password: event.target.password.value,
+			}
+			console.log(userNew)
+			await axios.get('${API_URL}/auth')
+			await axios.post(`${API_URL}/users`, userNew, { withCredentials: true })
 		}
 
-		await axios.post(`${API_URL}/users`, userNew, { withCredentials: true })
-		navigate('/users', { replace: true })
+		let err
+		if (err) {
+			console.error(err)
+			// handle error
+			return
+		}
+		navigate('/articles', { replace: true })
 	}
 
 	function selectType(event) {
@@ -31,10 +42,12 @@ export default function SignUpForm() {
 	return (
 		<div className="user-form">
 			<h2>Sign up</h2>
-			<Link to="/sign-in">Already a user? Sign in instead</Link>
+			<Link to="/sign-in" className="col-2 col-form-label offset-2">
+				Already a user? Sign in instead
+			</Link>
 			<form className="form" onSubmit={createUser}>
 				<div className="form-group row mb-3">
-					<label htmlFor="username" className="col-3 col-form-label">
+					<label htmlFor="username" className="col-2 col-form-label offset-2">
 						Username:
 					</label>
 					<div className="col-5">
@@ -43,7 +56,7 @@ export default function SignUpForm() {
 					</div>
 				</div>
 				<div className="form-group row mb-3">
-					<label htmlFor="firstName" className="col-3 col-form-label">
+					<label htmlFor="firstName" className="col-2 col-form-label offset-2">
 						First name:
 					</label>
 					<div className="col-5">
@@ -52,7 +65,7 @@ export default function SignUpForm() {
 					</div>
 				</div>
 				<div className="form-group row mb-3">
-					<label htmlFor="lastName" className="col-3 col-form-label">
+					<label htmlFor="lastName" className="col-2 col-form-label offset-2">
 						Last name:
 					</label>
 					<div className="col-5">
@@ -61,7 +74,7 @@ export default function SignUpForm() {
 					</div>
 				</div>
 				<div className="form-group row mb-3">
-					<label htmlFor="email" className="col-3 col-form-label">
+					<label htmlFor="email" className="col-2 col-form-label offset-2">
 						Email:
 					</label>
 					<div className="col-5">
@@ -70,7 +83,7 @@ export default function SignUpForm() {
 					</div>
 				</div>
 				<div className="form-group row mb-3">
-					<label htmlFor="password" className="col-3 col-form-label">
+					<label htmlFor="password" className="col-2 col-form-label offset-2">
 						Password:
 					</label>
 					<div className="col-5">
@@ -80,7 +93,7 @@ export default function SignUpForm() {
 				</div>
 
 				<div className="form-group row mb-3">
-					<label className="col-3 col-form-label">Type:</label>
+					<label className="col-2 col-form-label offset-2">Type:</label>
 					<div className="col-5">
 						<div className="form-check">
 							<input
@@ -115,7 +128,7 @@ export default function SignUpForm() {
 
 				{type === 'specialist' && (
 					<div className="form-group row mb-3">
-						<label htmlFor="specialization" className="col-3 col-form-label">
+						<label htmlFor="specialization" className="col-2 col-form-label offset-2">
 							Specialization:
 						</label>
 						<div className="col-5">
@@ -124,7 +137,7 @@ export default function SignUpForm() {
 						</div>
 
 						<div className="form-group row mb-3">
-							<label htmlFor="address" className="col-3 col-form-label">
+							<label htmlFor="address" className="col-2 col-form-label offset-2">
 								Address:
 							</label>
 							<div className="col-5">
@@ -134,7 +147,7 @@ export default function SignUpForm() {
 						</div>
 
 						<div className="form-group row mb-3">
-							<label htmlFor="education" className="col-3 col-form-label">
+							<label htmlFor="education" className="col-2 col-form-label offset-2">
 								Education:
 							</label>
 							<div className="col-5">
@@ -144,7 +157,7 @@ export default function SignUpForm() {
 						</div>
 
 						<div className="form-group row mb-3">
-							<label htmlFor="degree" className="col-3 col-form-label">
+							<label htmlFor="degree" className="col-2 col-form-label offset-2">
 								Degree:
 							</label>
 							<div className="col-5">
@@ -156,7 +169,7 @@ export default function SignUpForm() {
 						</div>
 
 						<div className="form-group row mb-3">
-							<label htmlFor="background" className="col-3 col-form-label">
+							<label htmlFor="background" className="col-2 col-form-label offset-2">
 								Background:
 							</label>
 							<div className="col-5">

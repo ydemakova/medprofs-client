@@ -3,6 +3,8 @@
 	flex-flow: column;
 	min-height: 100vh;
 	background-image: url('../src/images/bk-medprofs.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 h2 {
