@@ -9,6 +9,7 @@ export default function NewAppointment(props) {
 			<form onSubmit={handleSubmit}>
 				<h3>Name: {props.name} </h3>
 				<h3>Price: {props.price}</h3>
+
 				<div class="form-group">
 					<label for="date">Date:</label>
 					<input name="date" type="date" class="form-control" id="date" />

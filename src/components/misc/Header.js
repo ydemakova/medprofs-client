@@ -58,11 +58,21 @@ export default function Header() {
 									About us
 								</Link>
 							</li>
+							<li className="nav-item">
+								<Link className="nav-link" to="/">
+									|
+								</Link>
+							</li>
 							{(!!user && (
 								<>
 									<li className="nav-item">
 										<Link className="nav-link" aria-current="page" to="/profile">
 											Profile
+										</Link>
+									</li>
+									<li className="nav-item">
+										<Link className="nav-link" aria-current="page" to="/my-articles">
+											My Articles
 										</Link>
 									</li>
 									<li className="nav-item">

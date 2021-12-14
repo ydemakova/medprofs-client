@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { API_URL } from '../../config'
 
 export default function ArticleForm() {
@@ -43,7 +43,7 @@ export default function ArticleForm() {
 			return
 		}
 
-		navigate('/articles', { replace: true })
+		navigate('/my-articles', { replace: true })
 	}
 
 	return (
@@ -136,7 +136,11 @@ export default function ArticleForm() {
 				</div>
 				<div className="row">
 					<div className="col-5 offset-5">
-						<button className="btn btn-primary offset-8" type="submit">
+						<Link className="btn btn-primary" to="/my-articles">
+							&lt; Back to articles ...
+						</Link>
+						&nbsp;&nbsp;&nbsp;
+						<button className="btn btn-primary" type="submit">
 							Submit form
 						</button>
 					</div>

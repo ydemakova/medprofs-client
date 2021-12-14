@@ -13,54 +13,21 @@ export default function ArticleListPage() {
 		})()
 	}, [])
 
-	async function deleteArticle(id) {
-		await axios.delete(`${API_URL}/articles/${id}`)
-		const filteredArticles = articles.filter((elem) => {
-			return elem._id !== id
-		})
-		setArticles(filteredArticles)
-	}
-
 	return (
-		<div className="articles">
-			<div className="d-flex justify-content-between align-items-baseline">
-				<h1>Article list page</h1>
-				<Link to="/articles/new" className="btn btn-primary">
-					New Article
-				</Link>
-			</div>
-			<table className="table">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Title</th>
-						<th>Link</th>
-						<th>Location</th>
-						<th>Text</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					{articles.map((article, index) => (
-						<tr key={article._id} className="align-middle">
-							<td>{index + 1}.</td>
-							<td>{article.title}</td>
-							<td>{article.link}</td>
-							<td>{article.location}</td>
-							<td>{article.text}</td>
-							<td>
-								<Link className="btn btn-primary" to={`/articles/${article._id}`}>
-									edit
-								</Link>
-								&nbsp;
-								<button className="btn btn-danger" onClick={() => deleteArticle(article._id)}>
-									delete
-								</button>
-							</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
+		<div className="all-articles container">
+			{articles.map((article, index) => (
+				<div key={article._id} className="card mb-3">
+					<div className="card-body">
+						<h5 className="card-title">{article.title}</h5>
+						<p className="card-text">Sphere: {article.sphere}</p>
+						<p className="card-text text-truncate">{article.text}</p>
+						<p className="card-text">Author: {article.author?.username}</p>
+						<Link className="btn btn-primary" to={'/articles/' + article._id}>
+							Read more ...
+						</Link>
+					</div>
+				</div>
+			))}
 		</div>
 	)
 }
