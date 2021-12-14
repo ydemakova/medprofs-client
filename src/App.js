@@ -4,6 +4,7 @@ import AppointmentListPage from './components/appointment/AppointmentList'
 import ArticleDetailPage from './components/article/ArticleDetailPage'
 import ArticleListPage from './components/article/ArticleListPage'
 import SignInPage from './components/auth/SignInPage'
+import SignOutPage from './components/auth/SignOutPage'
 import SignUpPage from './components/auth/SignUpPage'
 import AboutPage from './components/misc/AboutPage'
 import Footer from './components/misc/Footer'
@@ -18,6 +19,7 @@ export default function App() {
 			<Routes>
 				<Route path="/sign-in" element={<SignInPage />} />
 				<Route path="/sign-up" element={<SignUpPage />} />
+				<Route path="/sign-out" element={<SignOutPage />} />
 				<Route path="/articles" element={<ArticleListPage />} />
 				<Route path="/articles/new" element={<ArticleDetailPage />} />
 				<Route path="/articles/:id" element={<ArticleDetailPage />} />

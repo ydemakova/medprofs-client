@@ -38,7 +38,6 @@ export default function SignUpForm() {
 
 	return (
 		<div className="user-form">
-			<h2>Sign up</h2>
 			<form className="form" onSubmit={createUser}>
 				<div className="form-group row mb-3">
 					<label htmlFor="username" className="col-2 col-form-label offset-2">
