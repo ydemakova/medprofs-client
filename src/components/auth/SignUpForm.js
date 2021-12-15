@@ -5,35 +5,26 @@ import { API_URL } from '../../config'
 
 export default function SignUpForm() {
 	const navigate = useNavigate()
-	const [type, setType] = useState('visitor')
+	const [role, setRole] = useState('visitor')
 
 	async function createUser(event) {
 		event.preventDefault()
-		console.log(event.target)
+		const userNew = {}
 
-		const userNew = {
-			username: event.target.username.value,
-			firstName: event.target.firstName.value,
-			lastName: event.target.lastName.value,
-			email: event.target.email.value,
-			password: event.target.password.value,
+		for (let i = 0, element; (element = event.target[i++]); ) {
+			if (element.name && element.value) {
+				userNew[element.name] = element.value
+			}
 		}
-		console.log(userNew)
+
 		await axios.post(`${API_URL}/auth/sign-up`, userNew, { withCredentials: true })
-
-		let err
-		if (err) {
-			console.error(err)
-			// handle error
-			return
-		}
-		navigate('/profile', { replace: true })
+		const path = userNew.role === 'specialist' ? '/profile' : '/articles'
+		navigate(path, { replace: true })
 	}
 
-	function selectType(event) {
-		const typeNew = event.target.value
-		console.log(typeNew)
-		setType(typeNew)
+	function selectRole(event) {
+		const roleNew = event.target.value
+		setRole(roleNew)
 	}
 
 	return (
@@ -92,11 +83,11 @@ export default function SignUpForm() {
 							<input
 								className="form-check-input"
 								type="radio"
-								name="type"
+								name="role"
 								value="visitor"
 								id="type-visitor"
 								defaultChecked={true}
-								onChange={selectType}
+								onChange={selectRole}
 							/>
 							<label className="form-check-label" htmlFor="type-visitor">
 								Visitor
@@ -106,10 +97,10 @@ export default function SignUpForm() {
 							<input
 								className="form-check-input"
 								type="radio"
-								name="type"
+								name="role"
 								value="specialist"
 								id="specialist"
-								onChange={selectType}
+								onChange={selectRole}
 							/>
 							<label className="form-check-label" htmlFor="specialist">
 								Specialist
@@ -118,7 +109,7 @@ export default function SignUpForm() {
 					</div>
 				</div>
 
-				{type === 'specialist' && (
+				{role === 'specialist' && (
 					<div className="form-group row mb-3">
 						<label htmlFor="specialization" className="col-2 col-form-label offset-2">
 							Specialization:

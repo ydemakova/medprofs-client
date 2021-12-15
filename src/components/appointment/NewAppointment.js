@@ -52,7 +52,7 @@ export default function NewAppointment(props) {
 				</div>
 				<div className="form-group col-5 offset-3 mb-3">
 					<label htmlFor="specialist">Specialist:</label>
-					<select class="form-select" id="specialist" onChange={(e) => setSpecialist(e.target.value)}>
+					<select className="form-select" id="specialist" onChange={(e) => setSpecialist(e.target.value)}>
 						{users.map((user, index) => (
 							<option key={user._id} value={user._id}>
 								{user.firstName} {user.lastName}

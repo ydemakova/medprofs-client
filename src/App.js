@@ -33,8 +33,8 @@ export default function App() {
 				<Route path="/my-articles/:id" element={<MyArticleFormPage />} />
 				<Route path="/my-articles/new" element={<MyArticleFormPage />} />
 				<Route path="/about" element={<AboutPage />} />
-				<Route path="/" element={<HomePage />} />
-				<Route path="*" exact={true} component={My404Component} />
+				<Route path="/" exact={true} element={<HomePage />} />
+				<Route path="*" element={<My404Component />} />
 			</Routes>
 			<Footer />
 		</div>

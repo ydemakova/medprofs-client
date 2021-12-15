@@ -4,10 +4,10 @@ export default function CreateOrEditProfile() {
 	return (
 		<form>
 			{/* <h3>Create or edit Your Profile </h3>
-			<label class="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
+			<label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
 				Speciality
 			</label>
-			<select class="custom-select my-1 mr-sm-2" id="speciality" name="speciality">
+			<select className="custom-select my-1 mr-sm-2" id="speciality" name="speciality">
 				<option selected>Choose...</option>
 				<option value="1">Allergy and immunology</option>
 				<option value="2">Cardiology</option>
@@ -34,22 +34,22 @@ export default function CreateOrEditProfile() {
 					aria-describedby="emailHelp"
 					placeholder="Enter email"
 				/>
-				<small id="emailHelp" class="form-text text-muted">
+				<small id="emailHelp" className="form-text text-muted">
 					We'll never share your email with anyone else.
 				</small>
 			</div>
 			<div className="col-md-3 mb-3">
 				<label htmlFor="password">Password</label>
-				<input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+				<input type="password" name="password" className="form-control" id="password" placeholder="Password" />
 			</div>
 			<div className="form-row">
 				<div className="col-md-3 mb-3">
 					<label htmlFor="country">Country</label>
-					<input type="text" name="country" class="form-control" id="country" placeholder="City" required />
+					<input type="text" name="country" className="form-control" id="country" placeholder="City" required />
 				</div>
 				<div className="col-md-3 mb-3">
 					<label htmlFor="city">City</label>
-					<input type="text" name="city" class="form-control" id="city" placeholder="City" required />
+					<input type="text" name="city" className="form-control" id="city" placeholder="City" required />
 				</div>
 			</div> */}
 		</form>

@@ -34,7 +34,7 @@ export default function ProfilePage() {
 														alt=""
 													/>
 												</div>
-												<p>{user?.degree}</p> <p>{user?.spezialization}</p>
+												<p>{user?.degree}</p> <p>{user?.specialization}</p>
 											</div>
 										</div>
 										<div className="col-sm-9 mt-2">
@@ -60,9 +60,7 @@ export default function ProfilePage() {
 													</div>
 													<div className="col-sm-6">
 														<p className="m-b-5 f-w-600">Location</p>
-														<h6 className="text-muted f-w-400">
-															{user?.address?.city} {user?.address?.country}
-														</h6>
+														<h6 className="text-muted f-w-400">{user?.address}</h6>
 													</div>
 												</div>
 											</div>

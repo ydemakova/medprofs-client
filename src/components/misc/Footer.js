@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function Footer() {
 	return (
-		<footer className="mt-auto bk-dark text-center text-white">
-			<div className="container p-4" style={{ backgroundColor: '#116466' }}>
-				<section className="">
-					<form action="">
+		<footer className="mt-auto bk-dark text-center text-white" style={{ backgroundColor: '#116466' }}>
+			<div className="p-4">
+				<section className="container">
+					<form>
 						<div className="row d-flex justify-content-center">
 							<div className="col-auto">
 								<p className="pt-2">
@@ -32,7 +32,7 @@ export default function Footer() {
 				</section>
 			</div>
 
-			<div className="text-center p-3" style={{ backgroundColor: '#116466' }}>
+			<div className="text-center p-3">
 				© 2021 Copyright:&nbsp;
 				<a className="text-white" href="https://www.wizardingworld.com/">
 					Medprofs.com
