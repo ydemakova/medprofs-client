@@ -14,20 +14,22 @@ export default function ArticleListPage() {
 	}, [])
 
 	return (
-		<div className="all-articles container">
-			{articles.map((article, index) => (
-				<div key={article._id} className="card mb-3">
-					<div className="card-body">
-						<h5 className="card-title">{article.title}</h5>
-						<p className="card-text">Sphere: {article.sphere}</p>
-						<p className="card-text text-truncate">{article.text}</p>
-						<p className="card-text">Author: {article.author?.username}</p>
-						<Link className="btn btn-primary" to={'/articles/' + article._id}>
-							Read more ...
-						</Link>
+		<>
+			<div className="all-articles container">
+				{articles.map((article, index) => (
+					<div key={article._id} className="card mb-3">
+						<div className="card-body">
+							<h5 className="card-title">{article.title}</h5>
+							<p className="card-text">Sphere: {article.sphere}</p>
+							<p className="card-text text-truncate">{article.text}</p>
+							<p className="card-text">Author: {article.author?.username}</p>
+							<Link className="btn btn-primary" to={'/articles/' + article._id}>
+								Read more ...
+							</Link>
+						</div>
 					</div>
-				</div>
-			))}
-		</div>
+				))}
+			</div>
+		</>
 	)
 }

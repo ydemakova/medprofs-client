@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import AppointmentListPage from './components/appointment/AppointmentList'
+import NewAppointment from './components/appointment/NewAppointment'
 import ArticleDetailPage from './components/article/ArticleDetailPage'
 import ArticleListPage from './components/article/ArticleListPage'
 import MyArticleFormPage from './components/article/MyArticleFormPage'
@@ -13,6 +14,7 @@ import Footer from './components/misc/Footer'
 import Header from './components/misc/Header'
 import HomePage from './components/misc/HomePage'
 import ProfilePage from './components/user/ProfilePage'
+import My404Component from './components/misc/My404Component'
 
 export default function App() {
 	return (
@@ -25,12 +27,14 @@ export default function App() {
 				<Route path="/articles" element={<ArticleListPage />} />
 				<Route path="/articles/:id" element={<ArticleDetailPage />} />
 				<Route path="/appointments" element={<AppointmentListPage />} />
+				<Route path="/appointments/new" element={<NewAppointment />} />
 				<Route path="/profile" element={<ProfilePage />} />
 				<Route path="/my-articles" element={<MyArticleListPage />} />
 				<Route path="/my-articles/:id" element={<MyArticleFormPage />} />
 				<Route path="/my-articles/new" element={<MyArticleFormPage />} />
 				<Route path="/about" element={<AboutPage />} />
 				<Route path="/" element={<HomePage />} />
+				<Route path="*" exact={true} component={My404Component} />
 			</Routes>
 			<Footer />
 		</div>

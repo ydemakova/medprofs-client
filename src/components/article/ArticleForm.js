@@ -99,7 +99,7 @@ export default function ArticleForm() {
 					<label htmlFor="text" className="col-3 offset-2 col-form-label">
 						Text:
 					</label>
-					<div className="col-7">
+					<div className="col-5">
 						<textarea
 							type="text"
 							className="form-control"

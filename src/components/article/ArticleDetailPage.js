@@ -23,6 +23,7 @@ export default function ArticleDetailPage() {
 				<div className="card-body">
 					<h5 className="card-title">{article.title}</h5>
 					<p className="card-text">Sphere: {article.sphere}</p>
+					<hr />
 					<p className="card-text">Location: {article.location}</p>
 					<p className="card-text">Link: {article.link}</p>
 					<p className="card-text">{article.text}</p>

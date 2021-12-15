@@ -53,6 +53,11 @@ export default function Header() {
 									Appointments
 								</Link>
 							</li>
+							<li>
+								<Link className="nav-link" to="/appointments/new">
+									New Appointment
+								</Link>
+							</li>
 							<li className="nav-item">
 								<Link className="nav-link" to="/about">
 									About us
