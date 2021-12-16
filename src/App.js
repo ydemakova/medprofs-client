@@ -14,6 +14,7 @@ import Footer from './components/misc/Footer'
 import Header from './components/misc/Header'
 import HomePage from './components/misc/HomePage'
 import ProfilePage from './components/user/ProfilePage'
+import EditProfile from './components/user/EditProfile'
 import SpecialistListPage from './components/user/SpecialistListPage'
 import My404Component from './components/misc/My404Component'
 
@@ -31,6 +32,8 @@ export default function App() {
 				<Route path="/appointments" element={<AppointmentListPage />} />
 				<Route path="/appointments/new" element={<NewAppointment />} />
 				<Route path="/profile" element={<ProfilePage />} />
+				<Route path="/profile/:id" element={<ProfilePage />} />
+				<Route path="/profile/edit" element={<EditProfile />} />
 				<Route path="/my-articles" element={<MyArticleListPage />} />
 				<Route path="/my-articles/:id" element={<MyArticleFormPage />} />
 				<Route path="/my-articles/new" element={<MyArticleFormPage />} />

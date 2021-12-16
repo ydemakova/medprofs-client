@@ -5,7 +5,6 @@ import { API_URL } from '../../config'
 
 export default function SpecialistListPage() {
 	const [specialists, setSpecialists] = useState([])
-	const user = {}
 
 	useEffect(() => {
 		;(async () => {
@@ -14,20 +13,10 @@ export default function SpecialistListPage() {
 		})()
 	}, [])
 
-	{
-		/*async function deleteSpecialist(id) {
-		await axios.delete(`${API_URL}/users/${id}`)
-		const filteredSpecialists = specialists.filter((elem) => {
-			return elem._id !== id
-		})
-		setSpecialists(filteredSpecialists)
-	}*/
-	}
-
 	return (
 		<>
 			<h2>Our Specialists</h2>
-			<div class="row g-2">
+			<div className="row g-2">
 				{specialists.map((specialist, index) => (
 					<div key={specialist._id} className="col-md-3">
 						<div className="card-y p-2 py-3 text-center">
@@ -39,7 +28,7 @@ export default function SpecialistListPage() {
 							</h5>
 							<small>{specialist.specialization}</small>
 							<div className="mt-4 apointment">
-								<Link className="btn btn-warning btn-specialist" to={'/profile'}>
+								<Link className="btn btn-warning btn-specialist" to={`/profile/${specialist._id}`}>
 									View Profile
 								</Link>
 								<Link className="btn btn-warning btn-specialist" to={'/appointments/new'}>

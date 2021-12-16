@@ -1,19 +1,21 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { API_URL } from '../../config'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 export default function ProfilePage() {
+	const { id } = useParams()
 	const [user, setUser] = useState(null)
 
 	useEffect(() => {
+		const path = id ? `users/${id}` : `auth/current-user`
 		;(async () => {
 			const res = await axios
-				.get(`${API_URL}/auth/current-user`, { withCredentials: true })
+				.get(`${API_URL}/${path}`, { withCredentials: true })
 				.catch((err) => console.log('Error: ', err))
 			setUser(res?.data)
 		})()
-	}, [])
+	}, [id])
 
 	return (
 		<div>
@@ -75,7 +77,9 @@ export default function ProfilePage() {
 				<Link className="btn btn-primary btn-profile" to="/my-articles/new">
 					Write an Article
 				</Link>
-				<button className="btn btn-success btn-profile">Edit Profile</button>
+				<Link to="/profile/edit" className="btn btn-success btn-profile">
+					Edit Profile
+				</Link>
 				<button className="btn btn-danger btn-profile">Delete Profile</button>
 			</div>
 		</div>
