@@ -9,7 +9,20 @@ export default function SignUpForm() {
 
 	async function createUser(event) {
 		event.preventDefault()
-		const userNew = {}
+
+		//first upload the image to cloudinary
+		console.log(event.target.myImage.files[0])
+
+		// Create the form data with the key 'imageUrl' because our server expects the formdata with they key 'imageUrl'
+		let imageForm = new FormData()
+		imageForm.append('imageUrl', event.target.myImage.files[0])
+
+		let imgResponse = await axios.post(`${API_URL}/upload`, imageForm)
+		console.log(imgResponse.data)
+
+		const userNew = {
+			image: imgResponse.data.image,
+		}
 
 		for (let i = 0, element; (element = event.target[i++]); ) {
 			if (element.name && element.value) {
@@ -158,6 +171,21 @@ export default function SignUpForm() {
 							<div className="col-5">
 								<input type="text" className="form-control" id="background" name="background" />
 								<div className="form-text">Your professional background (work places)</div>
+							</div>
+						</div>
+
+						<div className="form-group row mb-3">
+							<label htmlFor="image" className="col-2 col-form-label offset-2">
+								Photo:
+							</label>
+							<input
+								className="col-4 col-form-label"
+								type="file"
+								name="myImage"
+								accept="image/png, image/jpg"
+							/>
+							<div className="form-text offset-4">
+								Your personal photo (will be seen by website visitors)
 							</div>
 						</div>
 					</div>
