@@ -136,11 +136,11 @@ export default function ArticleForm() {
 				</div>
 				<div className="row">
 					<div className="col-5 offset-5">
-						<Link className="btn btn-primary" to="/my-articles">
+						<Link className="btn btn-primary btn-profile" to="/my-articles">
 							&lt; Back to articles ...
 						</Link>
 						&nbsp;&nbsp;&nbsp;
-						<button className="btn btn-primary" type="submit">
+						<button className="btn btn-primary btn-profile" type="submit">
 							Submit form
 						</button>
 					</div>

@@ -14,6 +14,7 @@ import Footer from './components/misc/Footer'
 import Header from './components/misc/Header'
 import HomePage from './components/misc/HomePage'
 import ProfilePage from './components/user/ProfilePage'
+import SpecialistListPage from './components/user/SpecialistListPage'
 import My404Component from './components/misc/My404Component'
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
 				<Route path="/sign-in" element={<SignInPage />} />
 				<Route path="/sign-up" element={<SignUpPage />} />
 				<Route path="/sign-out" element={<SignOutPage />} />
+				<Route path="/users" element={<SpecialistListPage />}></Route>
 				<Route path="/articles" element={<ArticleListPage />} />
 				<Route path="/articles/:id" element={<ArticleDetailPage />} />
 				<Route path="/appointments" element={<AppointmentListPage />} />

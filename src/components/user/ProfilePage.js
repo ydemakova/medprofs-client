@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { API_URL } from '../../config'
+import { Link } from 'react-router-dom'
 
 export default function ProfilePage() {
 	const [user, setUser] = useState(null)
@@ -28,11 +29,7 @@ export default function ProfilePage() {
 											<div className="card-block text-center text-white">
 												<h6 className="f-w-600">{user?.username}</h6>
 												<div className="m-b-25">
-													<img
-														src="https://img.icons8.com/bubbles/100/000000/user.png"
-														className="img-radius"
-														alt=""
-													/>
+													<img id="photo" src={user?.image} className="img-radius" alt="" />
 												</div>
 												<p>{user?.degree}</p> <p>{user?.specialization}</p>
 											</div>
@@ -60,7 +57,9 @@ export default function ProfilePage() {
 													</div>
 													<div className="col-sm-6">
 														<p className="m-b-5 f-w-600">Location</p>
-														<h6 className="text-muted f-w-400">{user?.address}</h6>
+														<h6 className="text-muted f-w-400">
+															{user?.address?.city} {user?.address?.country}
+														</h6>
 													</div>
 												</div>
 											</div>
@@ -73,9 +72,11 @@ export default function ProfilePage() {
 				</div>
 			</div>
 			<div className="text-center">
-				<button className="btn btn-success">Edit Profile</button>
-				&nbsp;&nbsp;&nbsp;
-				<button className="btn btn-danger">Delete Profile</button>
+				<Link className="btn btn-primary btn-profile" to="/my-articles/new">
+					Write an Article
+				</Link>
+				<button className="btn btn-success btn-profile">Edit Profile</button>
+				<button className="btn btn-danger btn-profile">Delete Profile</button>
 			</div>
 		</div>
 	)

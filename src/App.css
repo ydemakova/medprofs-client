@@ -5,11 +5,17 @@
 	background-color: #d1e8e2;
 }
 
-h2 {
+h2,
+h3,
+h4 {
 	text-align: center;
 	margin-bottom: 20px;
 }
-
+#photo {
+	border-radius: 60px;
+	width: auto;
+	height: 150px;
+}
 #appointmentsHeader {
 	text-align: center;
 	margin-bottom: 30px;
@@ -26,6 +32,18 @@ h2 {
 .about-us img {
 	height: 150px;
 	width: auto;
+}
+
+.btn-profile {
+	margin-right: 20px;
+	margin-bottom: 30px;
+	font-size: small;
+}
+
+.btn-specialist {
+	margin-right: 10px;
+	margin-bottom: 5px;
+	font-size: small;
 }
 
 .user-card-full {
@@ -146,4 +164,33 @@ h6 {
 
 .m-t-40 {
 	margin-top: 20px;
+}
+
+.add {
+	border-radius: 20px;
+}
+
+.card-y {
+	border: solid#ffcb9a;
+	border-radius: 20px;
+	transition: all 1s;
+	cursor: pointer;
+}
+
+.card-y:hover {
+	-webkit-box-shadow: 3px 5px 17px -4px #777777;
+	box-shadow: 3px 5px 17px -4px #777777;
+}
+
+#log-out {
+	width: auto;
+	height: 300px;
+	padding-left: 400px;
+	display: inline-block;
+}
+
+.card-y img {
+	border-radius: 20px;
+	height: 70px;
+	width: auto;
 }

@@ -14,33 +14,44 @@ export default function SpecialistListPage() {
 		})()
 	}, [])
 
-	async function deleteSpecialist(id) {
+	{
+		/*async function deleteSpecialist(id) {
 		await axios.delete(`${API_URL}/users/${id}`)
 		const filteredSpecialists = specialists.filter((elem) => {
 			return elem._id !== id
 		})
 		setSpecialists(filteredSpecialists)
+	}*/
 	}
 
 	return (
-		<div>
-			<div className="d-flex justify-content-between align-items-baseline">
-				<h1>Our Specialists</h1>
+		<>
+			<h2>Our Specialists</h2>
+			<div class="row g-2">
+				{specialists.map((specialist, index) => (
+					<div key={specialist._id} className="col-md-3">
+						<div className="card-y p-2 py-3 text-center">
+							<div className="img mb-2">
+								<img src={specialist.image} alt="" />
+							</div>
+							<h5 className="mb-0">
+								{specialist.firstName} {specialist.lastName}
+							</h5>
+							<small>{specialist.specialization}</small>
+							<div className="mt-4 apointment">
+								<Link className="btn btn-warning btn-specialist" to={'/profile'}>
+									View Profile
+								</Link>
+								<Link className="btn btn-warning btn-specialist" to={'/appointments/new'}>
+									Book Appointment
+								</Link>
+							</div>
+						</div>
+					</div>
+				))}
 			</div>
-			<table className="table">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Name</th>
-						<th>Address</th>
-						<th>Specialisation</th>
-						<th>Degree</th>
-						<th>Background</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					{specialists.map((specialist, index) => (
+
+			{/*{specialists.map((specialist, index) => (
 						<tr key={specialist._id} className="align-middle">
 							<td>{index + 1}.</td>
 							<td>
@@ -60,9 +71,7 @@ export default function SpecialistListPage() {
 								</button>
 							</td>
 						</tr>
-					))}
-				</tbody>
-			</table>
-		</div>
+					))}*/}
+		</>
 	)
 }
