@@ -77,6 +77,7 @@ export default function ArticleForm() {
 							value={sphere}
 							onChange={(e) => setSphere(e.target.value)}
 						>
+							<option value="">Please choose...</option>
 							<option value="Allergy and immunology">Allergy and immunology</option>
 							<option value="Cardiology">Cardiology</option>
 							<option value="Clinical neurophysiology">Clinical neurophysiology</option>
@@ -139,9 +140,8 @@ export default function ArticleForm() {
 						<Link className="btn btn-primary btn-profile" to="/my-articles">
 							&lt; Back to articles ...
 						</Link>
-						&nbsp;&nbsp;&nbsp;
 						<button className="btn btn-primary btn-profile" type="submit">
-							Submit form
+							Save
 						</button>
 					</div>
 				</div>

@@ -77,7 +77,7 @@ export default function ProfilePage() {
 				<Link className="btn btn-primary btn-profile" to="/my-articles/new">
 					Write an Article
 				</Link>
-				<Link to="/profile/edit" className="btn btn-success btn-profile">
+				<Link to={`/profile/edit/${user?._id}`} className="btn btn-success btn-profile">
 					Edit Profile
 				</Link>
 				<button className="btn btn-danger btn-profile">Delete Profile</button>
