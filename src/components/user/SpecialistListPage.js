@@ -5,20 +5,23 @@ import { API_URL } from '../../config'
 
 export default function SpecialistListPage() {
 	const [specialists, setSpecialists] = useState([])
+	const [currentId, setCurrentId] = useState(null)
 
 	useEffect(() => {
 		;(async () => {
-			const res = await axios.get(`${API_URL}/users`)
+			let res = await axios.get(`${API_URL}/users`)
 			setSpecialists(res.data)
+			res = await axios.get(`${API_URL}/auth/current-user`, { withCredentials: true })
+			setCurrentId(res.data._id)
 		})()
 	}, [])
 
 	return (
-		<>
+		<div className="container">
 			<h2>Our Specialists</h2>
-			<div className="row g-2">
-				{specialists.map((specialist, index) => (
-					<div key={specialist._id} className="col-md-3">
+			<div className="row g-2 mx-auto">
+				{specialists.map((specialist) => (
+					<div key={specialist._id} className="col-4">
 						<div className="card-y p-2 py-3 text-center">
 							<div className="img mb-2">
 								<img src={specialist.image} alt="" />
@@ -31,36 +34,16 @@ export default function SpecialistListPage() {
 								<Link className="btn btn-warning btn-specialist" to={`/profile/${specialist._id}`}>
 									View Profile
 								</Link>
-								<Link className="btn btn-warning btn-specialist" to={'/appointments/new'}>
-									Book Appointment
-								</Link>
+								{currentId !== specialist._id && (
+									<Link className="btn btn-warning btn-specialist" to="/appointments/new">
+										Book Appointment
+									</Link>
+								)}
 							</div>
 						</div>
 					</div>
 				))}
 			</div>
-
-			{/*{specialists.map((specialist, index) => (
-						<tr key={specialist._id} className="align-middle">
-							<td>{index + 1}.</td>
-							<td>
-								{specialist.firstName} {specialist.lastName}
-							</td>
-							<td>{specialist.address}</td>
-							<td>{specialist.specialisation}</td>
-							<td>{specialist.degree}</td>
-							<td>{specialist.background}</td>
-							<td>
-								<Link className="btn btn-primary" to={`/users/${user._id}`}>
-									edit
-								</Link>
-								&nbsp;
-								<button className="btn btn-danger" onClick={() => deleteSpecialist(user._id)}>
-									delete
-								</button>
-							</td>
-						</tr>
-					))}*/}
-		</>
+		</div>
 	)
 }

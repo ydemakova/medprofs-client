@@ -6,12 +6,17 @@ import { Link, useParams } from 'react-router-dom'
 export default function ProfilePage() {
 	const { id } = useParams()
 	const [user, setUser] = useState(null)
+	const [currentId, setCurrentId] = useState(null)
 
 	useEffect(() => {
-		const path = id ? `users/${id}` : `auth/current-user`
 		;(async () => {
-			const res = await axios
-				.get(`${API_URL}/${path}`, { withCredentials: true })
+			let res = await axios
+				.get(`${API_URL}/auth/current-user`, { withCredentials: true })
+				.catch((err) => console.log('Error: ', err))
+			setCurrentId(res.data._id)
+			if (!id) return
+			res = await axios
+				.get(`${API_URL}/users/${id}`, { withCredentials: true })
 				.catch((err) => console.log('Error: ', err))
 			setUser(res?.data)
 		})()
@@ -73,15 +78,23 @@ export default function ProfilePage() {
 					</div>
 				</div>
 			</div>
-			<div className="text-center">
-				<Link className="btn btn-primary btn-profile" to="/my-articles/new">
-					Write an Article
-				</Link>
-				<Link to={`/profile/edit/${user?._id}`} className="btn btn-success btn-profile">
-					Edit Profile
-				</Link>
-				<button className="btn btn-danger btn-profile">Delete Profile</button>
-			</div>
+			{(currentId === user?._id && (
+				<div className="text-center">
+					<Link className="btn btn-primary btn-profile" to="/my-articles/new">
+						Write an Article
+					</Link>
+					<Link to={`/profile/edit/${user?._id}`} className="btn btn-success btn-profile">
+						Edit Profile
+					</Link>
+					<button className="btn btn-danger btn-profile">Delete Profile</button>
+				</div>
+			)) || (
+				<div className="text-center">
+					<Link className="btn btn-primary" to="/appointments/new">
+						Book an appointment
+					</Link>
+				</div>
+			)}
 		</div>
 	)
 }

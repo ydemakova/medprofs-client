@@ -5,12 +5,17 @@ import { API_URL } from '../../config'
 
 export default function NewAppointment(props) {
 	const navigate = useNavigate()
+	const [currentId, setCurrentId] = useState(null)
 	const [users, setUsers] = useState([])
 	const [specialist, setSpecialist] = useState('')
 
 	useEffect(() => {
 		;(async () => {
-			const res = await axios.get(`${API_URL}/users`)
+			let res = await axios
+				.get(`${API_URL}/auth/current-user`, { withCredentials: true })
+				.catch((err) => console.log('Error: ', err))
+			setCurrentId(res.data._id)
+			res = await axios.get(`${API_URL}/users`)
 			setUsers(res.data)
 			setSpecialist(res.data.specialist)
 		})()
@@ -53,11 +58,13 @@ export default function NewAppointment(props) {
 				<div className="form-group col-5 offset-3 mb-3">
 					<label htmlFor="specialist">Specialist:</label>
 					<select className="form-select" id="specialist" onChange={(e) => setSpecialist(e.target.value)}>
-						{users.map((user, index) => (
-							<option key={user._id} value={user._id}>
-								{user.firstName} {user.lastName}
-							</option>
-						))}
+						{users
+							.filter((user) => user._id !== currentId)
+							.map((user) => (
+								<option key={user._id} value={user._id}>
+									{user.firstName} {user.lastName}
+								</option>
+							))}
 					</select>
 				</div>
 				<div className="form-group col-5 offset-3 mb-3">
