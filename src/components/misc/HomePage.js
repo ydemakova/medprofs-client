@@ -14,7 +14,7 @@ export default function HomePage() {
 
 	return (
 		<div>
-			<h2 className="text-center">Newest Articles</h2>
+			<h2 className="text-center mb-5">Newest Articles</h2>
 			<div className="all-articles container">
 				<div className="row">
 					{articles.map((article) => (

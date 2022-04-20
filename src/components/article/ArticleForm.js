@@ -29,6 +29,18 @@ export default function ArticleForm() {
 			link: event.target.link.value,
 			sphere,
 		}
+		if (event.target.myImage?.files[0]) {
+			//first upload the image to cloudinary
+			console.log('test:', event.target.myImage.files[0])
+
+			// Create the form data with the key 'imageUrl' because our server expects the formdata with they key 'imageUrl'
+			let imageForm = new FormData()
+			imageForm.append('imageUrl', event.target.myImage.files[0])
+
+			let imgResponse = await axios.post(`${API_URL}/upload`, imageForm)
+			articleNext.image = imgResponse.data.image
+		}
+
 
 		let err
 		if (isNew) {

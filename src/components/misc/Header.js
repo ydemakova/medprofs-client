@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { API_URL } from '../../config'
+import logo from '../../images/logo.png'
 
 export default function Header() {
 	const [user, setUser] = useState(null)
@@ -23,7 +24,7 @@ export default function Header() {
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
 				<div className="container-fluid">
 					<Link className="navbar-brand" to="/">
-						Medical Professionals
+						<img id="logo" src={logo} alt="" />
 					</Link>
 					<button
 						className="navbar-toggler"
@@ -39,11 +40,6 @@ export default function Header() {
 					<div className="collapse navbar-collapse d-flex" id="navbarNav">
 						<ul className="navbar-nav">
 							<li className="nav-item">
-								<Link className="nav-link" aria-current="page" to="/">
-									Home
-								</Link>
-							</li>
-							<li className="nav-item">
 								<Link className="nav-link" to="/users">
 									Professionals
 								</Link>
@@ -51,16 +47,6 @@ export default function Header() {
 							<li className="nav-item">
 								<Link className="nav-link" to="/articles">
 									Articles
-								</Link>
-							</li>
-							<li className="nav-item">
-								<Link className="nav-link" to="/appointments">
-									Appointments
-								</Link>
-							</li>
-							<li>
-								<Link className="nav-link" to="/appointments/new">
-									New Appointment
 								</Link>
 							</li>
 							<li className="nav-item">
@@ -83,6 +69,11 @@ export default function Header() {
 									<li className="nav-item">
 										<Link className="nav-link" aria-current="page" to="/my-articles">
 											My Articles
+										</Link>
+									</li>
+									<li className="nav-item">
+										<Link className="nav-link" to="/appointments">
+											My Appointments
 										</Link>
 									</li>
 									<li className="nav-item">

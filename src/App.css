@@ -11,9 +11,17 @@ h4 {
 	text-align: center;
 	margin-bottom: 20px;
 }
+
+#home {
+	margin-bottom: 40px;
+}
+#logo {
+	width: auto;
+	height: 60px;
+}
 #photo {
 	border-radius: 60px;
-	width: auto;
+	width: 130px;
 	height: 150px;
 }
 #appointmentsHeader {
@@ -192,5 +200,11 @@ h6 {
 .card-y img {
 	border-radius: 20px;
 	height: 70px;
-	width: auto;
+	width: 70px;
+}
+#error {
+	width: 300px;
+	height: auto;
+	margin-top: 50px;
+	margin-left: 450px;
 }

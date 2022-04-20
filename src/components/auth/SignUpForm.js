@@ -6,22 +6,21 @@ import { API_URL } from '../../config'
 export default function SignUpForm() {
 	const navigate = useNavigate()
 	const [role, setRole] = useState('visitor')
+	const userNew = {}
 
 	async function createUser(event) {
 		event.preventDefault()
 
-		//first upload the image to cloudinary
-		console.log(event.target.myImage.files[0])
+		if (event.target.myImage?.files[0]) {
+			//first upload the image to cloudinary
+			console.log('test:', event.target.myImage.files[0])
 
-		// Create the form data with the key 'imageUrl' because our server expects the formdata with they key 'imageUrl'
-		let imageForm = new FormData()
-		imageForm.append('imageUrl', event.target.myImage.files[0])
+			// Create the form data with the key 'imageUrl' because our server expects the formdata with they key 'imageUrl'
+			let imageForm = new FormData()
+			imageForm.append('imageUrl', event.target.myImage.files[0])
 
-		let imgResponse = await axios.post(`${API_URL}/upload`, imageForm)
-		console.log(imgResponse.data)
-
-		const userNew = {
-			image: imgResponse.data.image,
+			let imgResponse = await axios.post(`${API_URL}/upload`, imageForm)
+			userNew.image = imgResponse.data.image
 		}
 
 		for (let i = 0, element; (element = event.target[i++]); ) {
@@ -29,6 +28,8 @@ export default function SignUpForm() {
 				userNew[element.name] = element.value
 			}
 		}
+		userNew.role = role
+		console.log(userNew)
 
 		await axios.post(`${API_URL}/auth/sign-up`, userNew, { withCredentials: true })
 		const path = userNew.role === 'specialist' ? '/profile' : '/articles'

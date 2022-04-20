@@ -27,8 +27,13 @@ export default function AppointmentListPage() {
 	}
 
 	return (
-		<div>
-			<h1 id="appointmentsHeader">Appointments</h1>
+		<div className="appointments container">
+			<div className="d-flex justify-content-between align-items-baseline">
+				<h2 id="appointmentsHeader">Appointments</h2>
+				<Link to="/appointments/new" className="btn btn-primary">
+					New Appointment
+				</Link>
+			</div>
 			<table className="table">
 				<thead>
 					<tr>

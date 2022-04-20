@@ -22,9 +22,9 @@ export default function MyArticleListPage() {
 	}
 
 	return (
-		<div className="articles">
+		<div className="articles container">
 			<div className="d-flex justify-content-between align-items-baseline">
-				<h1>Article list page</h1>
+				<h2>Article list page</h2>
 				<Link to="/my-articles/new" className="btn btn-primary">
 					New Article
 				</Link>

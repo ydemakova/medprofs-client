@@ -9,7 +9,7 @@ export default function SpecialistListPage() {
 
 	useEffect(() => {
 		;(async () => {
-			let res = await axios.get(`${API_URL}/users`)
+			let res = await axios.get(`${API_URL}/users?isSpecialistsOnly=true`)
 			setSpecialists(res.data)
 			res = await axios.get(`${API_URL}/auth/current-user`, { withCredentials: true })
 			setCurrentId(res.data._id)
@@ -18,7 +18,7 @@ export default function SpecialistListPage() {
 
 	return (
 		<div className="container">
-			<h2>Our Specialists</h2>
+			<h2>Our Professionals</h2>
 			<div className="row g-2 mx-auto">
 				{specialists.map((specialist) => (
 					<div key={specialist._id} className="col-4">

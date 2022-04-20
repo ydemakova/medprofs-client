@@ -7,6 +7,7 @@ export default function ProfilePage() {
 	const { id } = useParams()
 	const [user, setUser] = useState(null)
 	const [currentId, setCurrentId] = useState(null)
+	const [articles, setArticles] = useState([])
 
 	useEffect(() => {
 		;(async () => {
@@ -14,13 +15,16 @@ export default function ProfilePage() {
 				.get(`${API_URL}/auth/current-user`, { withCredentials: true })
 				.catch((err) => console.log('Error: ', err))
 			setCurrentId(res.data._id)
-			if (!id) return
 			res = await axios
-				.get(`${API_URL}/users/${id}`, { withCredentials: true })
+				.get(`${API_URL}/users/${id || res.data._id}`, { withCredentials: true })
 				.catch((err) => console.log('Error: ', err))
 			setUser(res?.data)
+			res = await axios
+				.get(`${API_URL}/articles?author=${id || res.data._id}`, { withCredentials: true })
+				.catch((err) => console.log('Error: ', err))
+			setArticles(res.data)
 		})()
-	}, [id])
+	}, [id, currentId])
 
 	return (
 		<div>
@@ -34,39 +38,42 @@ export default function ProfilePage() {
 									<div className="row m-l-0 m-r-0">
 										<div className="col-sm-3 bg-c-lite-green user-profile">
 											<div className="card-block text-center text-white">
-												<h6 className="f-w-600">{user?.username}</h6>
+												<p className="f-w-600">{user?.username}</p>
 												<div className="m-b-25">
 													<img id="photo" src={user?.image} className="img-radius" alt="" />
 												</div>
-												<p>{user?.degree}</p> <p>{user?.specialization}</p>
+												<p>{user?.degree}</p>
+												<p>{user?.specialization}</p>
 											</div>
 										</div>
 										<div className="col-sm-9 mt-2">
 											<div className="card-block">
-												<h6 className="m-b-20 p-b-5 b-b-default f-w-600">
+												<p className="m-b-20 p-b-5 b-b-default f-w-600">
 													Professional Information
-												</h6>
+												</p>
 												<div className="row">
 													<div className="col-sm-6">
 														<p className="m-b-10 f-w-600">Background</p>
-														<h6 className="text-muted f-w-400">{user?.background}</h6>
+														<p className="text-muted f-w-400">{user?.background}</p>
 													</div>
 													<div className="col-sm-6">
 														<p className="m-b-10 f-w-600">Education</p>
-														<h6 className="text-muted f-w-400">{user?.education}</h6>
+														<p className="text-muted f-w-400">{user?.education}</p>
 													</div>
 												</div>
-												<h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6>
+												<p className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</p>
 												<div className="row">
 													<div className="col-sm-6">
 														<p className="m-b-10 f-w-600">Articles</p>
-														<h6 className="text-muted f-w-400">Clinical psyhology</h6>
+														<ul className="text-muted f-w-400">
+															{articles.map((article) => (
+																<li key={article._id}>{article.title}</li>
+															))}
+														</ul>
 													</div>
 													<div className="col-sm-6">
-														<p className="m-b-5 f-w-600">Location</p>
-														<h6 className="text-muted f-w-400">
-															{user?.address?.city} {user?.address?.country}
-														</h6>
+														<p className="m-b-5 f-w-600">Address</p>
+														<p className="text-muted f-w-400">{user?.address}</p>
 													</div>
 												</div>
 											</div>
