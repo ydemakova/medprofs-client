@@ -15,11 +15,11 @@ export default function ArticleDetailPage() {
 	}, [id])
 
 	return (
-		<div className="container">
+		<div className="container" style={{ padding: '3% 5% 15% 3%' }}>
 			<Link className="btn btn-primary mb-3" to="/articles">
 				&lt; Back to articles ...
 			</Link>
-			<div className="article-detail card mb-3">
+			<div className="article-detail card mb-3" style={{ margin: '5% 0' }}>
 				<div className="card-body">
 					<h5 className="card-title">{article.title}</h5>
 					<p className="card-text">Sphere: {article.sphere}</p>

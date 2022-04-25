@@ -76,7 +76,7 @@ export default function NewAppointment(props) {
 					<textarea name="message" className="form-control" id="message"></textarea>
 				</div>
 
-				<button type="submit" className="btn btn-primary col-1 offset-7">
+				<button type="submit" className="btn btn-primary col-1 offset-5" style={{ marginBottom: '3%' }}>
 					Submit
 				</button>
 			</form>

@@ -24,12 +24,12 @@ export default function MyArticleListPage() {
 	return (
 		<div className="articles container">
 			<div className="d-flex justify-content-between align-items-baseline">
-				<h2>Article list page</h2>
-				<Link to="/my-articles/new" className="btn btn-primary">
+				<h2>My Articles</h2>
+				<Link to="/my-articles/new" className="btn btn-primary" style={{ marginRight: '3%' }}>
 					New Article
 				</Link>
 			</div>
-			<table className="table">
+			<table className="table" style={{ marginTop: '3%' }}>
 				<thead>
 					<tr>
 						<th>#</th>
@@ -51,11 +51,19 @@ export default function MyArticleListPage() {
 							<td>{article.location}</td>
 							<td>{article.author?.username}</td>
 							<td>
-								<Link className="btn btn-primary" to={`/my-articles/${article._id}`}>
+								<Link
+									className="btn btn-primary"
+									style={{ marginBottom: '3%', minWidth: '75px' }}
+									to={`/my-articles/${article._id}`}
+								>
 									edit
 								</Link>
 								&nbsp;
-								<button className="btn btn-danger" onClick={() => deleteArticle(article._id)}>
+								<button
+									className="btn btn-danger"
+									style={{ minWidth: '75px' }}
+									onClick={() => deleteArticle(article._id)}
+								>
 									delete
 								</button>
 							</td>

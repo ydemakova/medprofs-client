@@ -30,11 +30,11 @@ export default function AppointmentListPage() {
 		<div className="appointments container">
 			<div className="d-flex justify-content-between align-items-baseline">
 				<h2 id="appointmentsHeader">Appointments</h2>
-				<Link to="/appointments/new" className="btn btn-primary">
+				<Link to="/appointments/new" className="btn btn-primary" style={{ marginRight: '3%' }}>
 					New Appointment
 				</Link>
 			</div>
-			<table className="table">
+			<table className="table" style={{ marginTop: '3%' }}>
 				<thead>
 					<tr>
 						<th>#</th>

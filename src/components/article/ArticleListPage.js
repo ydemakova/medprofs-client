@@ -17,7 +17,7 @@ export default function ArticleListPage() {
 		<div className="all-articles container">
 			<h2>Articles</h2>
 			{articles.map((article) => (
-				<div key={article._id} className="card mb-3">
+				<div key={article._id} className="card mb-3" style={{ margin: '5% 3%' }}>
 					<div className="card-body">
 						<h5 className="card-title">{article.title}</h5>
 						<p className="card-text">Sphere: {article.sphere}</p>

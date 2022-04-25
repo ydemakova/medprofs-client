@@ -96,7 +96,7 @@ export default function ProfilePage() {
 					<button className="btn btn-danger btn-profile">Delete Profile</button>
 				</div>
 			)) || (
-				<div className="text-center">
+				<div className="text-center" style={{ marginBottom: '3%' }}>
 					<Link className="btn btn-primary" to="/appointments/new">
 						Book an appointment
 					</Link>

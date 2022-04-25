@@ -20,7 +20,7 @@ export default function HomePage() {
 					{articles.map((article) => (
 						<div key={article._id} className="col-4">
 							<div className="card mb-3">
-								<div className="card-body">
+								<div className="card-body" style={{ minHeight: '180px' }}>
 									<h5 className="card-title">{article.title}</h5>
 									<p className="card-author">Author: {article.author?.username}</p>
 									<Link className="btn btn-primary" to={'/articles/' + article._id}>

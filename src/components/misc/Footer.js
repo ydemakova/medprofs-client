@@ -1,8 +1,12 @@
 import React from 'react'
 
 export default function Footer() {
+	const year = new Date().getFullYear()
 	return (
-		<footer className="mt-auto bk-dark text-center text-white" style={{ backgroundColor: '#116466' }}>
+		<footer
+			className="mt-auto bk-dark text-center text-white"
+			style={{ backgroundColor: '#116466', minHeight: '10vh', padding: '3%' }}
+		>
 			<div className="p-4">
 				<section className="container">
 					<form>
@@ -32,8 +36,8 @@ export default function Footer() {
 				</section>
 			</div>
 
-			<div className="text-center p-3">
-				© 2021 Copyright:&nbsp;
+			<div className="text-center p-2">
+				© {year} Copyright:&nbsp;
 				<a className="text-white" href="https://www.wizardingworld.com/">
 					Medprofs.com
 				</a>

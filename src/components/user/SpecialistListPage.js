@@ -18,10 +18,10 @@ export default function SpecialistListPage() {
 
 	return (
 		<div className="container">
-			<h2>Our Professionals</h2>
+			<h2 style={{ paddingBottom: '1%' }}>Our Professionals</h2>
 			<div className="row g-2 mx-auto">
 				{specialists.map((specialist) => (
-					<div key={specialist._id} className="col-4">
+					<div key={specialist._id} className="col-lg-4 col-md-5 col-sm-12" style={{ padding: '2%' }}>
 						<div className="card-y p-2 py-3 text-center">
 							<div className="img mb-2">
 								<img src={specialist.image} alt="" />

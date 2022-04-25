@@ -3,8 +3,8 @@ import React from 'react'
 export default function AboutPage() {
 	return (
 		<div>
-			<h2>About Us</h2>
-			<div className="about-us">
+			<h2 style={{ margin: '3% 0' }}>About Us</h2>
+			<div className="about-us" style={{ marginTop: '5%' }}>
 				<div>
 					<h5>Our expertise</h5>
 					<img
@@ -21,13 +21,14 @@ export default function AboutPage() {
 					{/*<img src="https://cdn.pixabay.com/photo/2020/05/17/05/53/doctor-5180142_960_720.png"/>*/}
 				</div>
 			</div>
-			<div className="text-general">
+			<div className="text-general" style={{ margin: '7% 0' }}>
 				<h5>Our Mission and Promise</h5>
+
 				<h6>
 					We provide you with the best medical professionals. All our specialists have proven their education
 					and background
 				</h6>
-
+				<br />
 				<h5>Privacy</h5>
 				<h6>We guarantee the protection of your personal data whenever they are collected</h6>
 			</div>
