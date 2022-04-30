@@ -1,9 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { API_URL } from '../../config'
 
 export default function EditProfile() {
+	const navigate = useNavigate()
 	const [specialist, setSpecialist] = useState({})
 	const { id } = useParams(null)
 
@@ -43,6 +45,7 @@ export default function EditProfile() {
 
 		const res = await axios.put(`${API_URL}/users/${id}`, userUpdate, { withCredentials: true })
 		setSpecialist(res.data)
+		navigate(`/profile`, { replace: true })
 	}
 
 	return (
