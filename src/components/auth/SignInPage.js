@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { API_URL } from '../../config'
 
 export default function SignInPage() {
-	const [email, setEmail] = useState('juliasha-best@mail.ru')
-	const [password, setPassword] = useState('juliasha-best@mail.ru')
+	const [email, setEmail] = useState('mask.white@gmail.com')
+	const [password, setPassword] = useState('Test123!')
 	const navigate = useNavigate()
 
 	function validateForm() {
