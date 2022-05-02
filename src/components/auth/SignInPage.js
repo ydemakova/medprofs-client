@@ -20,7 +20,7 @@ export default function SignInPage() {
 		await axios.post(`${API_URL}/auth/sign-in`, signInDto, { withCredentials: true }).catch((e) => (err = e))
 
 		if (err) {
-			console.error(err)
+			console.error('Error: ', err)
 			// handle error
 			return
 		}
